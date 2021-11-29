@@ -216,15 +216,15 @@ public class JeopardyAnswer {
 	public void readQuestions(Analyzer type, boolean change, boolean lemma, boolean judge) {
 		good = 0;
 		bad= 0;
-		ClassLoader classLoader = getClass().getClassLoader();
-	      File file = new File(classLoader.getResource("questions.txt").getFile());
+		//ClassLoader classLoader = getClass().getClassLoader();
+	      //File file = new File(classLoader.getResource("questions.txt").getPath());
 		try {
 			String cat;
 			String clue ;
 			String given;
 			String answer;
 			int ques = 0;
-			Scanner sc =new Scanner(file);
+			Scanner sc =new Scanner(new FileInputStream("src/questions.txt"));
 			while (sc.hasNextLine()) {
 				ques += 1;
 				cat = sc.nextLine();
