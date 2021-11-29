@@ -1,6 +1,7 @@
 package src;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -103,7 +104,7 @@ public class JeopardyAnswer {
         	w = new IndexWriter(index, config);
 		
 		 ClassLoader classLoader = getClass().getClassLoader();
-	        File file = new File(classLoader.getResource("wiki-subset").getFile());
+	        File file = new File(classLoader.getResource("src.resources/wiki-subset").getFile());
 	        File[] allText = file.listFiles();
 	        int len  = allText.length;
 	        for ( int i = 0; i < len; i++) {
@@ -184,7 +185,7 @@ public class JeopardyAnswer {
 	}
 	
 /*Testing an execution*/
-	public static void main() {
+	public static void main(String[] args) {
 		// lyzer is the StandardAnalyzer --> no stemming
 		// false for changing the scoring function and false for lemmatizing
 		JeopardyAnswer ja = new JeopardyAnswer("standard.txt", lyzer, false , false);
@@ -215,15 +216,15 @@ public class JeopardyAnswer {
 	public void readQuestions(Analyzer type, boolean change, boolean lemma, boolean judge) {
 		good = 0;
 		bad= 0;
-		 ClassLoader classLoader = getClass().getClassLoader();
-	        File file = new File(classLoader.getResource("questions.txt").getFile());
+		ClassLoader classLoader = getClass().getClassLoader();
+	      File file = new File(classLoader.getResource("questions.txt").getFile());
 		try {
 			String cat;
 			String clue ;
 			String given;
 			String answer;
 			int ques = 0;
-			Scanner sc = new Scanner(file);
+			Scanner sc =new Scanner(file);
 			while (sc.hasNextLine()) {
 				ques += 1;
 				cat = sc.nextLine();
